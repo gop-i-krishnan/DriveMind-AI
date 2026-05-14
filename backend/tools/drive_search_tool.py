@@ -9,8 +9,17 @@ import json
 
 SCOPES = ["https://www.googleapis.com/auth/drive"]
 
+credentials_json = os.getenv(
+    "GOOGLE_SERVICE_ACCOUNT"
+)
+
+if not credentials_json:
+    raise ValueError(
+        "GOOGLE_SERVICE_ACCOUNT environment variable is missing"
+    )
+
 service_account_info = json.loads(
-    os.getenv("GOOGLE_SERVICE_ACCOUNT")
+    credentials_json
 )
 
 credentials = service_account.Credentials.from_service_account_info(
