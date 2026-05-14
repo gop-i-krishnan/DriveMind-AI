@@ -16,4 +16,4 @@ google-auth==2.40.1
 google-auth-httplib2==0.2.0
 google-api-core==2.24.2
 
-pydantic==2.11.4
+pydantic==2.7.4
