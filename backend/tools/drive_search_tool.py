@@ -1,11 +1,9 @@
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
-
 from langchain.tools import tool
 
 import os
 import json
-
 
 SCOPES = ["https://www.googleapis.com/auth/drive"]
 
@@ -13,19 +11,23 @@ credentials_json = os.getenv(
     "GOOGLE_SERVICE_ACCOUNT"
 )
 
-if not credentials_json:
-    raise ValueError(
-        "GOOGLE_SERVICE_ACCOUNT environment variable is missing"
+if credentials_json:
+
+    service_account_info = json.loads(
+        credentials_json
     )
 
-service_account_info = json.loads(
-    credentials_json
-)
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info,
+        scopes=SCOPES
+    )
 
-credentials = service_account.Credentials.from_service_account_info(
-    service_account_info,
-    scopes=SCOPES
-)
+else:
+
+    credentials = service_account.Credentials.from_service_account_file(
+        "credentials/service_account.json",
+        scopes=SCOPES
+    )
 
 service = build("drive", "v3", credentials=credentials)
 
