@@ -6,7 +6,12 @@ from langchain.tools import tool
 
 SCOPES = ["https://www.googleapis.com/auth/drive"]
 
-SERVICE_ACCOUNT_FILE = "credentials/service_account.json"
+import os
+
+SERVICE_ACCOUNT_FILE = os.getenv(
+    "GOOGLE_APPLICATION_CREDENTIALS",
+    "credentials/service_account.json"
+)
 
 credentials = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE,
