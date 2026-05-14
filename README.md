@@ -1,16 +1,36 @@
-# DriveMind-AI Drive Assistant
+# DriveMind-AI
 
-An AI-powered conversational file discovery assistant built using FastAPI, LangChain, Streamlit, and Google Drive API.
+An AI-powered conversational Google Drive file discovery assistant built using FastAPI, LangChain, Streamlit, and Google Drive API.
+
+---
+
+## Live Deployment
+
+### Frontend (Streamlit)
+https://drivemind-ai-8zxelyfjyh74p47pduwvzk.streamlit.app/
+
+### Backend API Docs (FastAPI Swagger)
+https://drivemind-ai.onrender.com/docs
+
+---
 
 ## Features
 
-- Conversational AI file search
-- Google Drive integration
-- AI agent with tool calling
-- Natural language search
-- PDF, image, and Excel file discovery
+- Conversational AI file discovery
+- Google Drive API integration
+- LangChain AI agent with tool calling
+- Natural language file search
+- Search by:
+  - file name
+  - file type
+  - file content
+  - modified date
+- PDF, image, and Excel file retrieval
 - Clickable Google Drive links
 - Streamlit chat interface
+- FastAPI REST API backend
+
+---
 
 ## Tech Stack
 
@@ -21,78 +41,48 @@ An AI-powered conversational file discovery assistant built using FastAPI, LangC
 - Google Drive API
 - Python
 
+---
+
 ## Architecture
 
-User → Streamlit Frontend → FastAPI Backend → LangChain Agent → Drive Search Tool → Google Drive API
+User  
+↓  
+Streamlit Frontend  
+↓  
+FastAPI Backend  
+↓  
+LangChain Agent  
+↓  
+Drive Search Tool  
+↓  
+Google Drive API
+
+---
 
 ## Example Queries
 
 - Find PDF reports
 - Search for invoice image
-- Find employee excel file
+- Find employee excel sheet
 - Open daily report pdf
+- Find image files
+- Search salary spreadsheet
 
-## Setup Instructions
+---
 
-### Clone Repository
+## API Endpoints
 
-```bash
-git clone <https://github.com/gop-i-krishnan/DriveMind-AI.git>
-cd TailorTalk_assignment
-```
+### GET /
 
-### Create Virtual Environment
+Health check endpoint.
 
-```bash
-python -m venv venv
-```
+### POST /chat
 
-### Activate Virtual Environment
+Chat endpoint for conversational file discovery.
 
-#### Windows
+Example request:
 
-```bash
-venv\Scripts\activate
-```
-
-### Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Add Environment Variables
-
-Create `.env`
-
-```env
-GROQ_API_KEY=your_api_key
-```
-
-### Add Google Credentials
-
-Place service account JSON inside:
-
-```text
-credentials/service_account.json
-```
-
-### Run Backend
-
-```bash
-uvicorn backend.main:app --reload
-```
-
-### Run Frontend
-
-```bash
-streamlit run frontend/app.py
-```
-
-## Future Improvements
-
-- Conversational memory
-- Advanced query parsing
-- File previews
-- Authentication
-- Multi-folder support
+```json
+{
+  "message": "Find PDF reports"
+}
