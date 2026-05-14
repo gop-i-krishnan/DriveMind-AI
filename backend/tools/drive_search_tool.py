@@ -8,13 +8,15 @@ SCOPES = ["https://www.googleapis.com/auth/drive"]
 
 import os
 
-SERVICE_ACCOUNT_FILE = os.getenv(
-    "GOOGLE_APPLICATION_CREDENTIALS",
-    "credentials/service_account.json"
+import json
+import os
+
+service_account_info = json.loads(
+    os.getenv("SERVICE_ACCOUNT_JSON")
 )
 
-credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE,
+credentials = service_account.Credentials.from_service_account_info(
+    service_account_info,
     scopes=SCOPES
 )
 
