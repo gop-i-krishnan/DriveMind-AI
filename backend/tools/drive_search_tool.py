@@ -19,20 +19,37 @@ service = build("drive", "v3", credentials=credentials)
 @tool
 def search_drive(query: str) -> str:
     """
-    Search Google Drive files using Google Drive API query syntax.
+    Search Google Drive files using Google Drive API q parameter syntax.
+
+    You must generate valid Google Drive API queries.
 
     Examples:
-    - name contains 'Report'
-    - mimeType='application/pdf'
-    - name contains 'employee' and mimeType='application/pdf'
 
-    Use:
-    - name contains 'keyword'
-    - mimeType='application/pdf' for PDFs
-    - mimeType contains 'image/' for images
+    Search by partial name:
+    - name contains 'report'
+
+    Search PDFs:
+    - mimeType='application/pdf'
+
+    Search images:
+    - mimeType contains 'image/'
+
+    Search text content inside files:
+    - fullText contains 'invoice'
+
+    Search by modified date:
+    - modifiedTime > '2025-05-01T00:00:00'
+
+    Combined query:
+    - name contains 'financial'
+    and mimeType='application/pdf'
+
+    Combined content search:
+    - fullText contains 'salary'
+    and mimeType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 
     IMPORTANT:
-    Use valid Google Drive API q parameter syntax only.
+    Always generate VALID Google Drive API q syntax only.
     """
 
     try:
@@ -53,9 +70,9 @@ def search_drive(query: str) -> str:
         for file in files:
             output.append(
                 f"""
-            File: {file['name']}
-            Type: {file['mimeType']}
-            Link: {file['webViewLink']}
+            📄 File: {file['name']}
+            📁 Type: {file['mimeType']}
+            🔗 Link: {file['webViewLink']}
             """
             )
 
