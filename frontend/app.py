@@ -54,7 +54,7 @@ if user_input:
             try:
 
                 response = requests.post(
-                    "http://127.0.0.1:8000/chat",
+                    "https://drivemind-ai.onrender.com/chat",
                     json={
                         "message": user_input
                     }
