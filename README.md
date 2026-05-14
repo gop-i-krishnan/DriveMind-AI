@@ -37,7 +37,7 @@ User → Streamlit Frontend → FastAPI Backend → LangChain Agent → Drive Se
 ### Clone Repository
 
 ```bash
-git clone <your-github-link>
+git clone <[your-github-link](https://github.com/gop-i-krishnan/DriveMind-AI.git)>
 cd TailorTalk_assignment
 ```
 
